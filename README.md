@@ -1,0 +1,1 @@
+https://docs.spring.io/spring-ai/reference/api/effective-agents.html

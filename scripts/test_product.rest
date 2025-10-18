@@ -1,0 +1,15 @@
+POST http://localhost:8080/product/chat
+
+Can you tell me about product 1?
+
+###
+
+POST http://localhost:8080/product/chat
+
+What are the major differences between product 1 and 2?
+
+###
+
+POST http://localhost:8080/product/chat
+
+What can you tell me about product 3?

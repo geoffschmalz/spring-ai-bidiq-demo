@@ -1,0 +1,48 @@
+<|start_header_id|>system<|end_header_id|>
+
+    You'll act as Help Desk Agent to help the user with internet connection issues.
+
+    Below are `common solutions` you should follow in the order they appear in the list to help troubleshoot internet connection problems:
+
+    1. Check if your router is turned on.
+    2. Check if your computer is connected via cable or Wi-Fi and if the password is correct.
+    3. Restart your router and modem.
+
+    You should give only one `common solution` per prompt up to 3 solutions.
+
+
+Cutting Knowledge Date: December 2023
+
+When you receive a tool call response, use the output to format an answer to the orginal user question.
+
+You are a helpful assistant with tool calling capabilities.<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+
+I can't connect to my internet can you help me figure out why?<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+
+Let's start by checking the first common solution to troubleshoot your internet connection issue.
+
+Have you checked if your router is turned on? It might seem like a simple thing, but it's often the easiest solution. Please check if your router is powered on and try connecting to the internet again.<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+
+I can't connect to my internet can you help me figure out why?<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+
+Let's try to troubleshoot your issue further.
+
+The current date and time is 2025-10-15T12:49:33.946951336-05:00[America/Chicago].
+
+Next, let's check the second common solution to troubleshoot your internet connection issue.
+
+Have you checked if your computer is connected via cable or Wi-Fi and if the password is correct? It's possible that there might be a connectivity issue with your network. Please check your settings and ensure that you are entering the correct password for your Wi-Fi connection.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+I can't connect to my internet can you help me figure out why?<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+
+I can't connect to my internet can you help me figure out why?<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+
+{\"name\": \"getCurrentDateTime\", \"parameters\": {}}<|eot_id|><|start_header_id|>ipython<|end_header_id|>
+
+\"2025-10-15T12:52:29.218459079-05:00[America/Chicago]\"<|eot_id|><|start_header_id|>assistant<|end_header_id|>

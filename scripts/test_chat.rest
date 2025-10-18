@@ -1,0 +1,17 @@
+POST http://localhost:8080/helpdesk/chat
+
+I can't connect to my internet can you help me figure out why?
+
+###
+
+POST http://localhost:8080/helpdesk/chat
+
+I'm still having internet connection problems
+
+###
+
+POST http://localhost:8080/helpdesk/chat
+
+I tried your suggestions so far, but none of them worked
+
+

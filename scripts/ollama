@@ -1,0 +1,9 @@
+docker run --rm -e OLLAMA_DEBUG=2 -v ~/_dev/ollama_models:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+## Normal Chat
+# docker exec -it ollama ollama pull llama3.1
+
+## Vision
+# docker exec -it ollama ollama pull gemma3
+
+## Rag
+# docker exec -it ollama ollama pull mxbai-embed-large

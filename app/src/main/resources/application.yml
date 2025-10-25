@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: spring-ai-demo
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+    mcp:
+      client:
+        enabled: false
+        type: SYNC
+        streamable-http:
+          connections:
+            my-weather-server:
+              url: http://localhost:8081
+
+  security:
+    oauth2:
+      client:
+        provider:
+          authserver:
+            issuer-uri: http://localhost:9000
+        registration:
+          authserver:
+            client-id: mcp-client
+            client-secret: mcp-secret
+            authorization-grant-type: authorization_code
+            provider: authserver
+          authserver-client-credentials:
+            client-id: mcp-client
+            client-secret: mcp-secret
+            authorization-grant-type: client_credentials
+            provider: authserver
+logging:
+  level:
+    root: INFO
+    org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor: DEBUG
+
+

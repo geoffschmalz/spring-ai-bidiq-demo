@@ -1,0 +1,17 @@
+spring:
+  ai:
+    mcp:
+      server:
+        type: SYNC
+        name: my-weather-server
+        version: 0.0.1
+        protocol: STREAMABLE
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9000
+
+server:
+  port: 8081

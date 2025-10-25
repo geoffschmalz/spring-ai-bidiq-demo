@@ -15,3 +15,8 @@ POST http://localhost:8080/helpdesk/chat
 I tried your suggestions so far, but none of them worked
 
 
+###
+
+POST http://localhost:8080/helpdesk/chat
+
+Can you tell me the weather in chicago?

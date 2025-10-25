@@ -22,7 +22,6 @@ public class HelpDeskService {
         You should give only one `common solution` per prompt up to 3 solutions.               
     """;
 
-
     private final ChatClient client;
 
     private ChatMemory chatMemory = MessageWindowChatMemory.builder()
@@ -47,7 +46,7 @@ public class HelpDeskService {
     public String call(String userMessage) {
 
         var response = this.client.prompt()
-                .system(PROMPT_GENERAL_INSTRUCTIONS)
+                //.system(PROMPT_GENERAL_INSTRUCTIONS)
                 .user(userMessage)
                 .advisors(this.chatMemoryAdvisor)
                 .call();

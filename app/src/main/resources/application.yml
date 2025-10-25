@@ -4,6 +4,9 @@ spring:
   ai:
     ollama:
       base-url: http://localhost:11434
+      chat:
+        options:
+          model: "llama3.2:3b"
     mcp:
       client:
         enabled: false
@@ -30,9 +33,3 @@ spring:
             client-secret: mcp-secret
             authorization-grant-type: client_credentials
             provider: authserver
-logging:
-  level:
-    root: INFO
-    org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor: DEBUG
-
-

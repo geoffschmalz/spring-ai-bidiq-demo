@@ -25,68 +25,18 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-/*    @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
-                .oauth2Client(Customizer.withDefaults())
-                .csrf(CsrfConfigurer::disable)
-                .build();
-    }
-
-    @Bean
-    WebClient.Builder webClientBuilder(McpSyncClientExchangeFilterFunction filterFunction) {
-        return WebClient.builder().apply(filterFunction.configuration());
-    }
-*/
-    @Primary
-    @Bean("chatClient")
-    public ChatClient chatClient(@Qualifier("chatModel") OllamaChatModel model, List<McpSyncClient> mcpClients) {
-        return ChatClient
-                .builder(model)
-                .defaultToolCallbacks(SyncMcpToolCallbackProvider.builder().mcpClients(mcpClients).build())
-                .build();
-    }
-
-    @Bean("visionClient")
-    public ChatClient visionClient(@Qualifier("visionModel") OllamaChatModel model, List<McpSyncClient> mcpClients) {
-        return ChatClient
-                .builder(model)
-                .defaultToolCallbacks(SyncMcpToolCallbackProvider.builder().mcpClients(mcpClients).build())
-                .build();
-    }
-
     @Bean
     public SimpleVectorStore simpleVectorStore(EmbeddingModel embeddingModel) {
         return SimpleVectorStore.builder(embeddingModel).build();
     }
 
-    @Bean(value = "visionModel")
-    //Copied from OllamaChatAutoConfiguration
-    public OllamaChatModel visionModel(OllamaApi ollamaApi, OllamaChatProperties properties,
-                                           ToolCallingManager toolCallingManager) {
-
-        properties.getOptions().setModel("gemma3");
-
-        return OllamaChatModel.builder()
-                .ollamaApi(ollamaApi)
-                .defaultOptions(properties.getOptions())
-                .toolCallingManager(toolCallingManager)
-                .toolExecutionEligibilityPredicate(new DefaultToolExecutionEligibilityPredicate())
-                .build();
-    }
-
-    @Bean("chatModel")
-    //Copied from OllamaChatAutoConfiguration
-    public OllamaChatModel chatModel(OllamaApi ollamaApi, OllamaChatProperties properties,
-                                           ToolCallingManager toolCallingManager) {
-
-        properties.getOptions().setModel("llama3.1");
-
-        return OllamaChatModel.builder()
-                .ollamaApi(ollamaApi)
-                .defaultOptions(properties.getOptions())
-                .toolCallingManager(toolCallingManager)
-                .toolExecutionEligibilityPredicate(new DefaultToolExecutionEligibilityPredicate())
+    @Primary
+    @Bean
+    public ChatClient chatClient(OllamaChatModel model, List<McpSyncClient> mcpClients) {
+        return ChatClient
+                .builder(model)
+                //.defaultTools(new Tools())
+                .defaultToolCallbacks(SyncMcpToolCallbackProvider.builder().mcpClients(mcpClients).build())
                 .build();
     }
 }

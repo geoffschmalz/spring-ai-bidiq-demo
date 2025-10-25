@@ -1,6 +1,7 @@
 [#ftl]
 
 [#import "inc/page.ftlh" as p /]
+[#import "inc/chat.ftlh" as c /]
 
 [@p.page "Let's Chat!"; t]
     [#if t='body']
@@ -12,49 +13,29 @@
 
                     <!-- Header -->
                     <header class="chat-header">
-                        <h1 class="chat-title">Group Chat Demo</h1>
+                        <h1 class="chat-title">AI Demo</h1>
                     </header>
 
                     <!-- Chat History Area (Scrollable Content) -->
                     <main class="chat-history">
 
-                        [@messageIn "10:01 AM"]
-                            Hey everyone! Does anyone have the notes from yesterday's presentation? I missed the last part.
-                        [/@messageIn]
-
-                        [@messageOut "10:03 AM"]
-                            I've got them right here! Just sent you a link. Check your inbox.
-                        [/@messageOut]
-
-                        [@messageIn "10:04 AM"]
-                            Awesome, thanks! That saves me a ton of time. Did we decide on the deadline for the project?
-                        [/@messageIn]
-
-                        [@messageOut "10:05 AM"]
-                            We finalized it for Friday at 5 PM. Don't forget to review the final checklist before submitting!
-                        [/@messageOut]
-
-                        [@messageIn "10:06 AM"]
-                            Placeholder message to ensure the scrollbar appears correctly on different screens.
-                        [/@messageIn]
-
-                        [@messageOut "10:07 AM"]
-                            And another one! Testing the responsiveness and bubble shape.
-                        [/@messageOut]
-
-                        [@messageIn "10:08 AM"]
-                            Final check message.
-                        [/@messageIn]
-
                     </main>
 
                     <div class="input-area">
                         <textarea
-                            placeholder="Type your message..."
-                            class="message-input"
-                            rows="1" ></textarea>
+                                name="text"
+                                placeholder="Type your message..."
+                                class="message-input"
+                                rows="1" ></textarea>
 
-                        <button class="send-button" aria-label="Send Message">
+                        <button class="send-button" aria-label="Send Message"
+                                hx-post="/chat"
+                                hx-trigger="click"
+                                hx-target=".chat-history"
+                                hx-swap="beforeend scroll:bottom"
+                                hx-include=".message-input"
+                                hx-on:click="send()"
+                                hx-on::before-send="clear()">
                             Send
                         </button>
                     </div>
@@ -63,23 +44,27 @@
             <div class="pure-u-1-3"></div>
         </div>
     [/#if]
-[/@p.page]
+    <script>
+        function clear(){
+            document.querySelector('.message-input').value = ""
+        }
+        function send() {
+            const template = document.querySelector('#outTemplate > :first-child');
+            const child = template.cloneNode(true);
 
-[#macro messageIn time=""]
-    [@message "in" time]
-        [#nested /]
-    [/@message]
-[/#macro]
-[#macro messageOut time=""]
-    [@message "out" time ]
-        [#nested /]
-    [/@message]
-[/#macro]
-[#macro message direction="in" time=""]
-    <div class="message-row ${direction}">
-        <div class="message-bubble">
-            <p>[#nested /]</p>
-            <span class="message-time">${time}</span>
-        </div>
+            child.querySelector('.message-text').textContent = document.querySelector('.message-input').value
+            child.querySelector('.message-time').textContent = new Date().toLocaleTimeString();
+
+            const history = document.querySelector('.chat-history')
+
+            history.appendChild(child)
+            history.scrollTop = history.scrollHeight;
+        }
+    </script>
+    <div id="outTemplate" hidden>
+        [@c.messageOut time="" /]
     </div>
-[/#macro]
+    <div id="inTemplate" hidden>
+        [@c.messageOut time="" /]
+    </div>
+[/@p.page]

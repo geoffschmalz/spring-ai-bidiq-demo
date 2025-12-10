@@ -2,11 +2,18 @@ spring:
   application:
     name: spring-ai-demo
   ai:
-    ollama:
-      base-url: http://localhost:11434
-      chat:
-        options:
-          model: "llama3.2:3b"
+    vertex:
+      ai:
+        gemini:
+          project-id: mms-amznscrape-dev-9e0e
+          location: us-central1
+          model: gemini-2.0-flash
+        embedding:
+          project-id: mms-amznscrape-dev-9e0e
+          location: us-central1
+          text:
+            options:
+              model: gemini-embedding-001
     mcp:
       client:
         enabled: false

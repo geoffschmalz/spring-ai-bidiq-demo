@@ -8,3 +8,5 @@ include("app")
 include("auth")
 include("mcp")
 
+
+include 'api'
